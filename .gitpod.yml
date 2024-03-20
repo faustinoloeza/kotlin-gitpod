@@ -2,6 +2,14 @@
 image:
   file: .gitpod.Dockerfile
 
+  # Task 1: Run the project
+  - name: Run project
+    command: |
+      # Clear the terminal
+      printf "\033[3J\033c\033[3J" 
+      # Get Flutter dependencies and run the project
+      ./studio.sh
+
 # Define how to handle different ports
 ports:
   - port: 5900
