@@ -32,6 +32,20 @@ RUN echo "Setting up Android SDK..." \
     && echo "Android SDK set up successfully."
 
 
+# Crear el archivo .desktop para Android Studio
+RUN echo -e '[Desktop Entry]\n\
+Version=1.0\n\
+Type=Application\n\
+Name=Android Studio\n\
+Comment=Android Studio\n\
+Exec=bash -i "/opt/android-studio/bin/studio.sh" %f\n\
+Icon=/opt/android-studio/bin/studio.png\n\
+Categories=Development;IDE;\n\
+Terminal=false\n\
+StartupNotify=true\n\
+StartupWMClass=jetbrains-android-studio\n\
+Name[en_GB]=android-studio.desktop' > /usr/share/applications/android-studio.desktop
+
 # Update Google Chrome
 RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - \
     && echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list \
