@@ -1,16 +1,17 @@
-# Define the Docker image to use
+# Define el archivo Docker a usar
 image:
   file: .gitpod.Dockerfile
 
-  # Task 1: Run the project
+# Tarea 1: Ejecutar el proyecto
+tasks:
   - name: Run project
     command: |
-      # Clear the terminal
+      # Limpiar la terminal
       printf "\033[3J\033c\033[3J" 
-      # Get Flutter dependencies and run the project
-      ./studio.sh
+      # Ejecutar Android Studio
+      /bin/android-studio
 
-# Define how to handle different ports
+# Definir cómo manejar diferentes puertos
 ports:
   - port: 5900
     onOpen: ignore
@@ -24,8 +25,3 @@ ports:
     onOpen: ignore
   - port: 40000-50000
     onOpen: ignore
-
-# Define VS Code extensions to install
-vscode:
-  extensions:
-    - dart-code.flutter
