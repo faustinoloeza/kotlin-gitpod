@@ -10,9 +10,12 @@ USER root
 
 # Instala wget, tar y OpenJDK
 RUN apt-get update \
-    && apt-get install -y wget tar openjdk-18-jdk fuse libfuse2 \
+    && apt-get install -y wget tar openjdk-17-jdk fuse libfuse2 \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+# Configura la variable de entorno JAVA_HOME
+ENV JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
 
 # Descarga jetbrains-toolbox
 RUN wget https://download-cdn.jetbrains.com/toolbox/jetbrains-toolbox-2.3.1.31116.tar.gz \
