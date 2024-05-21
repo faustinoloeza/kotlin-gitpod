@@ -17,6 +17,8 @@ RUN apt-get update \
 RUN wget https://download-cdn.jetbrains.com/toolbox/jetbrains-toolbox-2.3.1.31116.tar.gz \
     && tar -xvzf jetbrains-toolbox-2.3.1.31116.tar.gz \
     && mv jetbrains-toolbox-2.3.1.31116 jetbrains \
+    && rm jetbrains-toolbox-2.3.1.31116.tar.gz \
+    && cd jetbrains \
     && ./jetbrains-toolbox
 
 RUN echo "Downloading Android command line tools..." \
