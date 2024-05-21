@@ -2,15 +2,28 @@
 image:
   file: .gitpod.Dockerfile
 
-# Tarea 1: Ejecutar el proyecto
 tasks:
+  - name: Clone repository
+    command: |
+      # Clonar el repositorio de GitHub
+      git clone https://github.com/faustinoloeza/currencyapp /workspace/currencyapp
+      cd /workspace/currencyapp
+
   - name: Run project
     command: |
       # Limpiar la terminal
       printf "\033[3J\033c\033[3J" 
-      # Ejecutar Android Studio
-      /bin/android-studio
-
+      # Ejecutar JetBrains Toolbox
+      cd /opt/jetbrains-toolbox
+      ./jetbrains-toolbox
+      
+  - name: Install JetBrains Fleet
+    command: |
+      sleep 30 # Espera a que JetBrains Toolbox se inicie completamente
+      TOOLBOX_API_PORT=$(lsof -i -P -n | grep jetbrains-toolb | grep LISTEN | awk '{print $9}' | cut -d: -f2)
+      TOOLBOX_API_URL="http://localhost:$TOOLBOX_API_PORT/api/v1"
+      PRODUCT_CODE="fleet"
+      curl -X POST "$TOOLBOX_API_URL/install?code=$PRODUCT_CODE"
 # Definir cómo manejar diferentes puertos
 ports:
   - port: 5900
