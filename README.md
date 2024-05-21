@@ -7,7 +7,7 @@ Kotlin Multiplatform template
 
 Click the button below to start a new development environment:
 
-[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/faustinoloeza/kotlin-gitpod)
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/faustinoloeza/kotlin-gitpod/tree/fleet)
 
 ![Imagen de Imgur](https://i.imgur.com/xo0c2M8.png)
 
