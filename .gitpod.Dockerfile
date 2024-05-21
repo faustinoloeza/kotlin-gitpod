@@ -12,11 +12,11 @@ RUN apt-get update \
     && apt-get install -y wget tar openjdk-18-jdk \
     && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-# Descarga Android Studio y realiza las operaciones necesarias
-RUN wget https://redirector.gvt1.com/edgedl/android/studio/ide-zips/2023.2.1.23/android-studio-2023.2.1.23-linux.tar.gz \
-    && tar -zxvf android-studio-2023.2.1.23-linux.tar.gz \
-    && mv android-studio /opt/ \
-    && ln -sf /opt/android-studio/bin/studio.sh /bin/android-studio
+# Descarga jetbrains-toolbox
+RUN wget https://download-cdn.jetbrains.com/toolbox/jetbrains-toolbox-2.3.1.31116.tar.gz \
+    && tar -xvzf jetbrains-toolbox-2.3.1.31116.tar.gz \
+    && mv jetbrains-toolbox-2.3.1.31116 jetbrains \
+    && ./jetbrains-toolbox
 
 RUN echo "Downloading Android command line tools..." \
     && _file_name="commandlinetools-linux-11076708_latest.zip" \
@@ -32,19 +32,7 @@ RUN echo "Setting up Android SDK..." \
     && echo "Android SDK set up successfully."
 
 
-# Crear el archivo .desktop para Android Studio
-RUN echo -e '[Desktop Entry]\n\
-Version=1.0\n\
-Type=Application\n\
-Name=Android Studio\n\
-Comment=Android Studio\n\
-Exec=bash -i "/opt/android-studio/bin/studio.sh" %f\n\
-Icon=/opt/android-studio/bin/studio.png\n\
-Categories=Development;IDE;\n\
-Terminal=false\n\
-StartupNotify=true\n\
-StartupWMClass=jetbrains-android-studio\n\
-Name[en_GB]=android-studio.desktop' > /usr/share/applications/android-studio.desktop
+
 
 # Update Google Chrome
 RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - \

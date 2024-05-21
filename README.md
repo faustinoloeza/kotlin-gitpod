@@ -1,6 +1,7 @@
 Kotlin Multiplatform template
 - Ubuntu 22.04.3 LTS
-- Android Studio
+- Fleet 2.3.1.31116
+
 
 
 
