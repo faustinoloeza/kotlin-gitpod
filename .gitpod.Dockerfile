@@ -30,9 +30,7 @@ RUN echo "Downloading Android command line tools..." \
     && rm -f "$_file_name" \
     && echo "Android command line tools downloaded successfully."
 
-RUN echo "Setting up Android SDK..." \
-    && yes | sdkmanager --sdk_root=$ANDROID_HOME "platform-tools" "build-tools;34.0.0" "platforms;android-33" \
-    && echo "Android SDK set up successfully."
+
 
 # Update Google Chrome
 RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - \
