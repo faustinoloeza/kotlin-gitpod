@@ -10,6 +10,7 @@ USER root
 # Instala wget, tar y OpenJDK
 RUN apt-get update \
     && apt-get install -y wget tar openjdk-18-jdk \
+    && apt install fuse libfuse2 -y \
     && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Descarga jetbrains-toolbox
