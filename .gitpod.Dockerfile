@@ -1,4 +1,4 @@
-FROM gitpod/workspace-full-vnc:2023-11-19-19-13-44
+FROM gitpod/workspace-full-vnc:2024-12-02-17-20-59
 SHELL ["/bin/bash", "-c"]
 ENV ANDROID_HOME=$HOME/androidsdk
 
