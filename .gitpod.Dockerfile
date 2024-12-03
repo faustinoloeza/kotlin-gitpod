@@ -13,23 +13,11 @@ RUN apt-get update \
     && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Descarga Android Studio y realiza las operaciones necesarias
-RUN wget https://redirector.gvt1.com/edgedl/android/studio/ide-zips/2023.2.1.23/android-studio-2023.2.1.23-linux.tar.gz \
-    && tar -zxvf android-studio-2023.2.1.23-linux.tar.gz \
+RUN wget https://redirector.gvt1.com/edgedl/android/studio/ide-zips/2024.2.1.12/android-studio-2024.2.1.12-linux.tar.gz \
+    && tar -zxvf android-studio-2024.2.1.12-linux.tar.gz \
+    && rm android-studio-2024.2.1.12-linux.tar.gz \
     && mv android-studio /opt/ \
     && ln -sf /opt/android-studio/bin/studio.sh /bin/android-studio
-
-RUN echo "Downloading Android command line tools..." \
-    && _file_name="commandlinetools-linux-11076708_latest.zip" \
-    && wget "https://dl.google.com/android/repository/$_file_name" \
-    && unzip "$_file_name" -d $ANDROID_HOME \
-    && rm -f "$_file_name" \
-    && echo "Android command line tools downloaded successfully."
-
-RUN echo "Setting up Android SDK..." \
-    && mkdir -p $ANDROID_HOME/cmdline-tools/latest \
-    && mv $ANDROID_HOME/cmdline-tools/{bin,lib} $ANDROID_HOME/cmdline-tools/latest \
-    && yes | sdkmanager "platform-tools" "build-tools;34.0.0" "platforms;android-33" \
-    && echo "Android SDK set up successfully."
 
 
 # Crear el archivo .desktop para Android Studio
