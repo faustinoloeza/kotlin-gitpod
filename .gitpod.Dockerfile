@@ -1,4 +1,4 @@
-FROM gitpod/workspace-full-vnc:2024-12-02-17-20-59
+FROM gitpod/workspace-full-vnc:2024-12-11-07-51-54
 SHELL ["/bin/bash", "-c"]
 ENV ANDROID_HOME=$HOME/androidsdk
 
@@ -9,7 +9,7 @@ USER root
 
 # Instala wget, tar y OpenJDK
 RUN apt-get update \
-    && apt-get install -y wget tar openjdk-18-jdk \
+    && apt-get install -y wget tar unzip openjdk-18-jdk \
     && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Descarga Android Studio y realiza las operaciones necesarias
