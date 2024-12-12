@@ -5,6 +5,18 @@ ENV ANDROID_HOME=$HOME/androidsdk
 # Agrega el directorio de Android SDK al PATH
 ENV PATH="$ANDROID_HOME/emulator:$ANDROID_HOME/tools:$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME/platform-tools:$PATH"
 
+USER gitpod
+
+# Instalar SDKMAN! y Java 17
+RUN curl -s "https://get.sdkman.io" | bash \
+    && source "$HOME/.sdkman/bin/sdkman-init.sh" \
+    && sdk install java 17.0.13-tem \
+    && sdk default java 17.0.13-tem
+
+# Configura JAVA_HOME
+ENV JAVA_HOME="/home/gitpod/.sdkman/candidates/java/17.0.13-tem"
+ENV PATH="$JAVA_HOME/bin:$PATH"
+
 USER root
 
 # Instala wget, tar y OpenJDK
@@ -13,8 +25,7 @@ RUN apt-get update \
     && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 
-ENV JAVA_HOME=/usr/lib/jvm/java-18-openjdk-amd64  
-ENV PATH="$JAVA_HOME/bin:$PATH"  
+
 
 # Descarga Android Studio y realiza las operaciones necesarias
 RUN wget https://redirector.gvt1.com/edgedl/android/studio/ide-zips/2024.2.1.12/android-studio-2024.2.1.12-linux.tar.gz \
