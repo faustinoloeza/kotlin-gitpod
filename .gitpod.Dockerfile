@@ -12,6 +12,10 @@ RUN apt-get update \
     && apt-get install -y wget tar unzip openjdk-18-jdk \
     && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
+
+ENV JAVA_HOME=/usr/lib/jvm/java-18-openjdk-amd64  
+ENV PATH="$JAVA_HOME/bin:$PATH"  
+
 # Descarga Android Studio y realiza las operaciones necesarias
 RUN wget https://redirector.gvt1.com/edgedl/android/studio/ide-zips/2024.2.1.12/android-studio-2024.2.1.12-linux.tar.gz \
     && tar -zxvf android-studio-2024.2.1.12-linux.tar.gz \
