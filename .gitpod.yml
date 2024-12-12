@@ -1,27 +1,49 @@
-# Define el archivo Docker a usar
-image:
-  file: .gitpod.Dockerfile
+# Define el archivo Docker a usar  
+image:  
+  file: .gitpod.Dockerfile  
 
-# Tarea 1: Ejecutar el proyecto
-tasks:
-  - name: Run project
-    command: |
-      # Limpiar la terminal
-      printf "\033[3J\033c\033[3J" 
-      # Ejecutar Android Studio
-      /bin/android-studio
+# Define las tareas a ejecutar al iniciar Gitpod  
+tasks:  
+  # Tarea 1: Clonar y preparar el proyecto  
+  - name: Clone and Setup Project  
+    init: |  
+      # Limpiar la terminal  
+      printf "\033[3J\033c\033[3J"  
 
-# Definir cómo manejar diferentes puertos
-ports:
-  - port: 5900
-    onOpen: ignore
-  - port: 6080
-    onOpen: open-preview
-  - port: 8080
-    onOpen: ignore
-  - port: 5037
-    onOpen: ignore
-  - port: 9100-9101
-    onOpen: ignore
-  - port: 40000-50000
-    onOpen: ignore
+      # Clonar el repositorio del proyecto  
+      if [ ! -d "currencyapp" ]; then  
+        git clone https://github.com/faustinoloeza/currencyapp.git  
+      fi  
+
+      # Cambiar al directorio del proyecto  
+      cd currencyapp  
+
+      # Asegurarse de que los permisos de gradlew sean correctos  
+      chmod +x ./gradlew  
+
+  # Tarea 2: Ejecutar el proyecto  
+  - name: Run Project  
+    command: |  
+      # Limpiar la terminal  
+      printf "\033[3J\033c\033[3J"  
+
+      # Cambiar al directorio del proyecto  
+      cd currencyapp  
+
+      # Ejecutar el proyecto  
+      ./gradlew composeApp:run  
+
+# Definir cómo manejar diferentes puertos  
+ports:  
+  - port: 5900  
+    onOpen: ignore  
+  - port: 6080  
+    onOpen: open-preview  
+  - port: 8080  
+    onOpen: ignore  
+  - port: 5037  
+    onOpen: ignore  
+  - port: 9100-9101  
+    onOpen: ignore  
+  - port: 40000-50000  
+    onOpen: ignore  
